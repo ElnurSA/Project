@@ -1,11 +1,9 @@
 ﻿using System;
 namespace Domain.Models
 {
-	public class BaseEntity
+	public abstract class BaseEntity
 	{
-		public BaseEntity()
-		{
-		}
+		public int Id { get; set; }
 	}
 }
 

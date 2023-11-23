@@ -2,28 +2,46 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Domain FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.CourseApp FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Repository/Class1.cs">
+  <MonoDevelop.Ide.ItemProperties.CourseApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Repository/Repositories/Interfaces/IBaseRepository.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="../Domain/Class1.cs" Line="1" Column="1" />
-      <File FileName="../Repository/Class1.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="5" Column="27" />
+      <File FileName="../Domain/Models/BaseEntity.cs" Line="6" Column="16" />
+      <File FileName="../Domain/Models/Group.cs" Line="8" Column="25" />
+      <File FileName="../Domain/Models/Student.cs" Line="8" Column="38" />
+      <File FileName="../Repository/Repositories/Interfaces/IBaseRepository.cs" Line="14" Column="33" />
+      <File FileName="../Repository/Repositories/Interfaces/IUserRepository.cs" Line="8" Column="44" />
+      <File FileName="../Service/Services/UserService.cs" Line="9" Column="44" />
+      <File FileName="../Service/Services/Interfaces/IUserService.cs" Line="9" Column="44" />
+      <File FileName="Controllers/UserController.cs" Line="51" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CourseApp" expanded="True">
-            <Node name="CourseApp" selected="True" />
-            <Node name="Domain" expanded="True" />
+            <Node name="CourseApp" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+            <Node name="Domain" expanded="True">
+              <Node name="Models" expanded="True" />
+            </Node>
+            <Node name="Repository">
+              <Node name="Data" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Interfaces" expanded="True">
+                  <Node name="IBaseRepository.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Service">
+              <Node name="Services" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Repository FirstBuild="True" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Service FirstBuild="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

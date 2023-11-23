@@ -1,0 +1,17 @@
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.csproj.AssemblyReference.cache
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.AssemblyInfoInputs.cache
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.AssemblyInfo.cs
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.csproj.CoreCompileInputs.cache
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Service.deps.json
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Service.dll
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Service.pdb
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Domain.dll
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Repository.dll
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Repository.pdb
+/Users/safiyevelnur/Desktop/Project/Service/bin/Debug/net6.0/Domain.pdb
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.csproj.CopyComplete
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.dll
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/refint/Service.dll
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/Service.pdb
+/Users/safiyevelnur/Desktop/Project/Service/obj/Debug/net6.0/ref/Service.dll
