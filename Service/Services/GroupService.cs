@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Service
+namespace Service.Services
 {
 	public class GroupService
 	{
