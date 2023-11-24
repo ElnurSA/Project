@@ -1,8 +1,12 @@
 ﻿using CourseApp.Controllers;
 //add enum
 //add try catch
+//search to lower2
+
+
 UserController userController = new();
 StudentController studentController = new();
+GroupController groupController = new();
 
 start:  beginning: Console.WriteLine("Please choose 1: Login, 2: Register");
 string numStr = Console.ReadLine();
@@ -21,18 +25,32 @@ if(num == 1)
     switch (option)
     {
         case ("1"):
+            groupController.Create();
+            goto app;
             break;
         case ("2"):
+            groupController.Delete();
+            goto app;
             break;
         case ("3"):
+            
+            goto app;
             break;
         case ("4"):
+            groupController.GetById();
+            goto app;
             break;
         case ("5"):
+            groupController.GetAll();
+            goto app;
             break;
         case ("6"):
+            groupController.Search();
+            goto app;
             break;
         case ("7"):
+            groupController.Sort();
+            goto app;
             break;
         case ("8"):
             studentController.Create();

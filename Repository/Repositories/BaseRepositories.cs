@@ -10,7 +10,9 @@ namespace Repository.Repositories
         
         public void Create(T entity)
         {
+            
             AppDbContext<T>.data.Add(entity);
+
         }
 
         public void Delete(T entity)

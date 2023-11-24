@@ -8,11 +8,13 @@ namespace CourseApp.Controllers
 {
 	public class StudentController
 	{
+		public readonly GroupService group;
 		private readonly IStudentService _student;
 
 		public StudentController()
 		{
             _student = new StudentService();
+			group = new GroupService();
 		}
 
 		public void GetAll()
@@ -21,7 +23,7 @@ namespace CourseApp.Controllers
 
 			foreach (var student in data)
 			{
-				Console.WriteLine($"{student.FullName} - {student.Age} - {student.Address} - {student.Phone}");
+				Console.WriteLine($"{student.FullName} - {student.Age} - {student.Address} - {student.Phone} - {student.Group.Name} - {student.Id}");
 			}
 		}
 
@@ -58,7 +60,7 @@ namespace CourseApp.Controllers
 			}
 		}
 
-        int inputId = 1;
+        private static int inputId = 1;
         public void Create()
 		{
 			
@@ -85,8 +87,20 @@ namespace CourseApp.Controllers
 			Console.WriteLine("Phone: ");
 			string phone = Console.ReadLine();
 
-			Student student = new() { FullName = fullName, Address = address, Age = age, Id = inputId, Phone = phone };
+            groupLine:  Console.WriteLine("Student must be in a group. Please enter an id of a group");
+			string idStr = Console.ReadLine();
+			int id;
+			bool isInt = int.TryParse(idStr, out id);
 
+			Groups groupById = group.GetById(id);
+
+			Student student = new() { FullName = fullName, Address = address, Age = age, Id = inputId, Phone = phone, Group = groupById };
+
+			if(student.Group == null)
+			{
+				Console.WriteLine("There is no group with this Id, please try again: ");
+				goto groupLine;
+			}
 			inputId++;
 
 			_student.Create(student);

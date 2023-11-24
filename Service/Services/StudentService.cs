@@ -50,7 +50,7 @@ namespace Service.Services
             return _student.GetById(id);
         }
 
-        public List<Student> Search()
+        public List<Student> Search(string searchStr)
         {
             return _student.Search(searchStr);
         }
