@@ -16,6 +16,8 @@ namespace CourseApp.Controllers
             _data = new UserService();
         }
 
+        
+
         public void Register()
 		{
 
@@ -23,7 +25,7 @@ namespace CourseApp.Controllers
 			string email = Console.ReadLine();
             if (!email.Contains("@"))
             {
-                Console.WriteLine("Email must contain @! Please try again: ");
+                Console.WriteLine("Email must contain @! Please try again ");
                 goto Email;
             }
 
@@ -88,13 +90,16 @@ namespace CourseApp.Controllers
 
             if (isSuccessLogin)
             {
-                Console.WriteLine("Login success");
+                Console.WriteLine("Login success, welcome to our application");
             }
             else
             {
                 Console.WriteLine("Email or password is wrong, please try again: ");
                 goto Login;
             }
+
+           
+            
         }
 	}
 }
