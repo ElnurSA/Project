@@ -45,15 +45,24 @@ namespace CourseApp.Controllers
                 goto input;
             }
 
+			var datas = _groups.GetById(id);
 
-			Console.WriteLine(_groups.GetById(id));
+			Console.WriteLine($"{datas.Name} - {datas.Capacity} - {datas.Id}");
 		}
 		private static int id = 1;
 		public void Create()
 		{
 			Console.WriteLine("To create a group please enter the followings: ");
-			Console.WriteLine("Group Name: ");
+            nameLine:  Console.WriteLine("Group Name: ");
 			string groupName = Console.ReadLine();
+			var data = _groups.GetAll();
+
+			if (data.FirstOrDefault(m=>m.Name == groupName) != null)
+			{
+				Console.WriteLine("Group with this name already exists! Please try again:");
+				goto nameLine;
+			}
+
 
             capacityLine:  Console.WriteLine("Group Capacity: ");
 			string capacityStr = Console.ReadLine();
@@ -94,6 +103,8 @@ namespace CourseApp.Controllers
 
 			_groups.Delete(groupDelete);
 
+			Console.WriteLine("Group has been deleted successfully");
+
 		}
 
 		public void Sort()
@@ -103,6 +114,8 @@ namespace CourseApp.Controllers
 			int input;
 
 			bool isInt = int.TryParse(inputStr, out input);
+
+			
 
 			if (!isInt)
 			{

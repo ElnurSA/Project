@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Domain.Models;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -39,10 +40,16 @@ namespace CourseApp.Controllers
 			if (!isInt)
 			{
 				Console.WriteLine("Your input is not valid for an Id, please try again!");
-				goto input;
-			}
+                goto input;
+            }
 
-			var data = _student.GetById(num);
+            if (_student.GetById(num) == null)
+            {
+                Console.WriteLine("There isn't any studnet with this Id, please try again: ");
+                goto input;
+            }
+
+            var data = _student.GetById(num);
 
 			Console.WriteLine($"{data.FullName} - {data.Age} - {data.Address} - {data.Phone}");
 		}

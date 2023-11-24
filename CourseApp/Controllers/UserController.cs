@@ -81,8 +81,13 @@ namespace CourseApp.Controllers
 
         public void Login()
         {
-            Login:  Console.WriteLine("Add your email: ");
+            Email: Console.WriteLine("Add your email: ");
             string email = Console.ReadLine();
+            if (!email.Contains("@"))
+            {
+                Console.WriteLine("Email must contain @! Please try again ");
+                goto Email;
+            }
             Console.WriteLine("Add your password: ");
             string password = Console.ReadLine();
 
@@ -95,7 +100,7 @@ namespace CourseApp.Controllers
             else
             {
                 Console.WriteLine("Email or password is wrong, please try again: ");
-                goto Login;
+                goto Email;
             }
 
            

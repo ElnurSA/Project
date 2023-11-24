@@ -80,6 +80,8 @@ if(num == 1)
             goto app;
             break;
         default:
+            Console.WriteLine("Wrong input try again!");
+            goto app;
             break;
     }
 
@@ -87,6 +89,11 @@ if(num == 1)
 else if(num == 2)
 {
     userController.Register();
+    goto start;
+}
+else
+{
+    Console.WriteLine("Your input must be either 1 or 2!");
     goto start;
 }
 
