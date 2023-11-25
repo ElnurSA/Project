@@ -25,9 +25,30 @@ namespace Service.Services
             _student.Delete(student);
         }
 
-        public void Edit()
+        public void Edit(int id, Student student)
         {
-            throw new NotImplementedException();
+            Student existingStudent = _student.Edit(id, student);
+            if (!string.IsNullOrWhiteSpace(student.FullName))
+            {
+                existingStudent.FullName = student.FullName;
+            }
+
+            if (student.Age is not 0)
+            {
+                existingStudent.Age = student.Age;
+            }
+
+            if (!string.IsNullOrWhiteSpace(student.Address))
+            {
+                existingStudent.Address = student.Address;
+            }
+
+            if (student.Group == null)
+            {
+                existingStudent.Group = student.Group;
+            }
+
+            
         }
 
         public List<Student> FilterAsc()

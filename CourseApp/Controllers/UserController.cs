@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Models;
 using Repository.Data;
+using Service.Helpers.Constants;
 using Service.Services;
 using Service.Services.Interfaces;
 
@@ -25,7 +26,7 @@ namespace CourseApp.Controllers
 			string email = Console.ReadLine();
             if (!email.Contains("@"))
             {
-                Console.WriteLine("Email must contain @! Please try again ");
+                Console.WriteLine(Messages.CorrectInputOfEmail);
                 goto Email;
             }
 
@@ -83,9 +84,14 @@ namespace CourseApp.Controllers
         {
             Email: Console.WriteLine("Add your email: ");
             string email = Console.ReadLine();
+            if(email == "")
+            {
+                Console.WriteLine(Messages.InputEmptyMessage);
+            }
+
             if (!email.Contains("@"))
             {
-                Console.WriteLine("Email must contain @! Please try again ");
+                Console.WriteLine(Messages.CorrectInputOfEmail);
                 goto Email;
             }
             Console.WriteLine("Add your password: ");

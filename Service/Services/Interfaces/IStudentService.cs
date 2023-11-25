@@ -7,13 +7,12 @@ namespace Service.Services.Interfaces
     {
 		public void Create(Student student);
 		public void Delete(Student student);
-		public void Edit();
+		public void Edit(int id, Student student);
 		public Student GetById(int id);
 		public List<Student> GetAll();
 		public List<Student> FilterAsc();
 		public List<Student> Search(string searchStr);
 		public List<Student> FilterDesc();
-
 
     }
 }

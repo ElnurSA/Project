@@ -24,9 +24,11 @@ namespace CourseApp.Controllers
 				Console.WriteLine($"{group.Name} - {group.Capacity} - {group.Id}");
 			}
 		}
-
+		
 		public void GetById()
 		{
+
+			 
             input:  Console.WriteLine("Please enter Id: ");
 			string idStr = Console.ReadLine();
 			int id;
@@ -82,24 +84,52 @@ namespace CourseApp.Controllers
 
 			Console.WriteLine("Group created successfully");
 
+			
+
 		}
 
 		public void Delete()
 		{
-            Console.WriteLine("Choose 1 if you want to continue, or 2 if you want to go back: ");
+            beginning:  Console.WriteLine("Choose 1 if you want to continue, or 2 if you want to go back: ");
             string intInput = Console.ReadLine();
 
-            if (intInput == "2")
+            if (intInput == "1")
             {
-                return;
+                
             }
+			else if(intInput == "2")
+			{
+				return;
+			}
+			else
+			{
+				Console.WriteLine("You must enter either 1 or 2! Try again: ");
+				goto beginning;
+			}
 
-            Console.WriteLine("Please enter the name of the group, which you want to delete: ");
-			string groupName = Console.ReadLine();
 
+            input:  Console.WriteLine("Please enter the Id of the group, which you want to delete: ");
+			string groupId = Console.ReadLine();
+			int id;
+			bool isIdInt = int.TryParse(groupId, out id);
 			var allGroups = _groups.GetAll();
 
-			Groups groupDelete = allGroups.FirstOrDefault(m => m.Name.Contains(groupName));
+			if (string.IsNullOrWhiteSpace(groupId))
+			{
+				Console.WriteLine("Your input cannot be empty, please try again");
+				goto input;
+			}
+
+
+
+			Groups groupDelete = _groups.GetById(id);
+            
+
+			if(groupDelete is null)
+			{
+				Console.WriteLine("The group with this id has not been found");
+				goto input;
+			}
 
 			_groups.Delete(groupDelete);
 
@@ -149,11 +179,11 @@ namespace CourseApp.Controllers
         }
 
 		public void Search()
-		{
+			{
             input:  Console.WriteLine("Enter search for group name: ");
 			string search = Console.ReadLine();
 
-
+			
 			var data = _groups.Search(search);
 
 			foreach (var group in data)
@@ -161,11 +191,69 @@ namespace CourseApp.Controllers
 				Console.WriteLine($"{group.Name} - {group.Capacity}");
 			}
 
-			if(data == null)
+			if(data.Capacity == 0)
 			{
-				Console.WriteLine("No group has been found please try again: ");
-				goto input;
+				Console.WriteLine("No group has been found ");
+				
 			}
+
+
+		}
+
+		public void Edit()
+		{
+
+
+            idInput:  Console.WriteLine("Enter the id of the group to edit: ");
+			string idStr = Console.ReadLine();
+
+			int id;
+			bool isTrueInt = int.TryParse(idStr, out id);
+			if (string.IsNullOrWhiteSpace(idStr))
+			{
+				Console.WriteLine("Please enter an id: ");
+				goto idInput;
+			}
+			if (!isTrueInt)
+			{
+				Console.WriteLine("Id has to be a number, please try again: ");
+                goto idInput;
+            }
+            var groupById = _groups.GetById(id);
+
+			if(groupById is null)
+			{
+				Console.WriteLine("Group with this id has not been found.");
+				return;
+			}
+
+            Console.WriteLine($"{groupById.Name} - {groupById.Capacity}");
+
+			Console.WriteLine("Enter new group name: ");
+			string newGroupName = Console.ReadLine();
+
+			Console.WriteLine("Enter new group capacity: ");
+			string newCapacityStr = Console.ReadLine();
+			int newCapacity;
+			bool isCapacityInt = int.TryParse(newCapacityStr, out newCapacity);
+			if (!isCapacityInt)
+			{
+				if (string.IsNullOrWhiteSpace(newCapacityStr))
+				{
+					goto end;
+				}
+				Console.WriteLine("Capacity has to be a number, please try again: ");
+			}
+
+            end:  Groups newGroup = new() { Name = newGroupName, Capacity = newCapacity, Id = id };
+
+			_groups.Edit(id, newGroup);
+
+			Console.WriteLine($"{groupById.Name} - {groupById.Capacity} - {groupById.Id}");
+			
+
+			
+
 		}
 	}
 }

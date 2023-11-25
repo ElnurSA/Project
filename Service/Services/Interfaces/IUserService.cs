@@ -8,7 +8,6 @@ namespace Service.Services.Interfaces
         public void Register(User newUser);
         public bool Login(string checkEmail, string checkPassword);
         public List<User> GetAll();
-
     }
 }
 

@@ -8,6 +8,7 @@ namespace Repository.Repositories.Interfaces
 		public List<Groups> SortByAsc();
         public List<Groups> SortByDesc();
         public List<Groups> Search(string searchStr);
+        public Groups Edit(int id, Groups group);
     }
 }
 

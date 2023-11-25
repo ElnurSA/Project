@@ -56,7 +56,7 @@ namespace CourseApp.Controllers
 
 		public void Search()
 		{
-			Console.WriteLine("Search for a student: ");
+            input:  Console.WriteLine("Search for a student: ");
 			string search = Console.ReadLine();
 
 			var data = _student.Search(search);
@@ -65,7 +65,13 @@ namespace CourseApp.Controllers
 			{
 				Console.WriteLine($"{student.FullName} - {student.Age} - {student.Address} - {student.Phone}");
 			}
-		}
+
+            if (data.Capacity == 0)
+            {
+                Console.WriteLine("No student has been found please try again: ");
+                goto input;
+            }
+        }
 
         private static int inputId = 1;
         public void Create()
@@ -188,6 +194,80 @@ namespace CourseApp.Controllers
             }
 
         }
-	}
+
+		public void Edit()
+		{
+		idInput: Console.WriteLine("Enter the id of the student to edit: ");
+			string idStr = Console.ReadLine();
+
+			int id;
+			bool isTrueInt = int.TryParse(idStr, out id);
+			if (string.IsNullOrWhiteSpace(idStr))
+			{
+				Console.WriteLine("Please enter an id: ");
+				goto idInput;
+			}
+			if (!isTrueInt)
+			{
+				Console.WriteLine("Id has to be a number, please try again: ");
+				goto idInput;
+			}
+			var groupById = _student.GetById(id);
+
+			if (groupById is null)
+			{
+				Console.WriteLine("Student with this id has not been found.");
+				return;
+			}
+
+			Console.WriteLine($"{groupById.FullName} - {groupById.Age} - {groupById.Address} - {groupById.Phone} - {groupById.Id}");
+
+			Console.WriteLine("Enter new student name: ");
+			string newStudentName = Console.ReadLine();
+
+			Console.WriteLine("Enter new student age: ");
+			string newAgeStr = Console.ReadLine();
+			int newAge;
+			bool isAgeInt = int.TryParse(newAgeStr, out newAge);
+			if (!isAgeInt)
+			{
+				if (string.IsNullOrWhiteSpace(newAgeStr))
+				{
+					return;
+				}
+				Console.WriteLine("Age has to be a number, please try again: ");
+			}
+
+			Console.WriteLine("Enter new student address: ");
+			string newAddress = Console.ReadLine();
+
+			Console.WriteLine("Enter new student number");
+			string newPhone = Console.ReadLine();
+
+            groupLine:  Console.WriteLine("Enter the Id of the new group");
+			string idGroupStr = Console.ReadLine();
+			int idGroup;
+			bool isGroupIdInt = int.TryParse(idGroupStr, out idGroup);
+
+			Groups newGroup = group.GetById(idGroup);
+
+			if (newGroup == null)
+			{
+				Console.WriteLine("No group with this id was found please try again: ");
+				goto groupLine;
+			}
+
+			Student newStudent = new() { Id = id, FullName = newStudentName, Age = newAge, Phone = newPhone, Address = newAddress, Group = newGroup };
+
+
+            _student.Edit(id, newStudent);
+
+			Console.WriteLine($"{newStudent.FullName} - {newStudent.Age} - {newStudent.Address}- {newStudent.Phone} - {newStudent.Id}");
+
+
+
+
+        }
+    }
 }
 

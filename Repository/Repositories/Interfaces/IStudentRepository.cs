@@ -8,6 +8,7 @@ namespace Repository.Repositories.Interfaces
 		public List<Student> FilterAsc();
         public List<Student> FilterDesc();
         public List<Student> Search(string searchStr);
+		public Student Edit(int id, Student student);
 	}
 }
 

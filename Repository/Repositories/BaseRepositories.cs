@@ -10,19 +10,12 @@ namespace Repository.Repositories
         
         public void Create(T entity)
         {
-            
             AppDbContext<T>.data.Add(entity);
-
         }
 
         public void Delete(T entity)
         {
             AppDbContext<T>.data.Remove(entity);
-        }
-
-        public void Edit(T entity)
-        {
-            throw new NotImplementedException();
         }
 
         public List<T> GetAll()

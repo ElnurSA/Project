@@ -27,9 +27,20 @@ namespace Service.Services
             _repo.Delete(group);
         }
 
-        public void Edit()
+        public void Edit(int id, Groups group)
         {
-            throw new NotImplementedException();
+            Groups existingGroup = _repo.Edit(id, group);
+            if(!string.IsNullOrWhiteSpace(group.Name))
+            {
+                existingGroup.Name = group.Name;
+            }
+            
+            if (group.Capacity is not 0)
+            {
+                existingGroup.Capacity = group.Capacity;
+            }
+            
+
         }
 
         public List<Groups> GetAll()

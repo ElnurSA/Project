@@ -2,7 +2,8 @@
 //add enum
 //add try catch
 //search to lower2
-
+//search error message does not appear
+//Capacity logic
 
 UserController userController = new();
 StudentController studentController = new();
@@ -27,62 +28,48 @@ if(num == 1)
         case ("1"):
             groupController.Create();
             goto app;
-            break;
         case ("2"):
             groupController.Delete();
             goto app;
-            break;
         case ("3"):
-            
+            groupController.Edit();
             goto app;
-            break;
         case ("4"):
             groupController.GetById();
             goto app;
-            break;
         case ("5"):
             groupController.GetAll();
             goto app;
-            break;
         case ("6"):
             groupController.Search();
             goto app;
-            break;
         case ("7"):
             groupController.Sort();
             goto app;
-            break;
         case ("8"):
             studentController.Create();
             goto app;
-            break;
         case ("9"):
             studentController.Delete();
             goto app;
-            break;
         case ("10"):
-           
-            break;
+            studentController.Edit();
+            goto app;
         case ("11"):
             studentController.GetById();
             goto app;
-            break;
         case ("12"):
             studentController.GetAll();
             goto app;
-            break;
         case ("13"):
             studentController.Filter();
             goto app;
-            break;
         case ("14"):
             studentController.Search();
             goto app;
-            break;
         default:
             Console.WriteLine("Wrong input try again!");
             goto app;
-            break;
     }
 
 }

@@ -7,6 +7,11 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepositories<Groups>, IGroupRepository
     {
+        public Groups Edit(int id, Groups group)
+        {
+            return AppDbContext<Groups>.data.FirstOrDefault(m => m.Id == id);
+        }
+
         public List<Groups> Search(string searchStr)
         {
             return AppDbContext<Groups>.data.Where(m => m.Name.Contains(searchStr)).ToList();
