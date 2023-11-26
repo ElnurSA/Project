@@ -11,12 +11,14 @@
     <None Remove="Services\Interfaces\" />
     <None Remove="Helpers\" />
     <None Remove="Helpers\Constants\" />
+    <None Remove="Helpers\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Helpers\" />
     <Folder Include="Helpers\Constants\" />
+    <Folder Include="Helpers\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository\Repository.csproj" />

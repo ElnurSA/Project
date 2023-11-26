@@ -1,4 +1,5 @@
 ﻿using CourseApp.Controllers;
+using Service.Helpers.Enums;
 //add enum
 
 //search to lower2
@@ -21,50 +22,52 @@ if(num == 1)
     app:  Console.WriteLine("Please select one option: Group operations: 1-Create, 2-Delete, 3-Edit," +
            " 4-GetById, 5-GetAll, 6-Search, 7-Sorting | Student operations : 8-Create, 9-Delete," +
            " 10-Edit, 11-GetById, 12-GetAll, 13 - Filter, 14 - Search");
-    string option = Console.ReadLine();
+    string optionStr = Console.ReadLine();
+    int option
+    bool isOptionInt = int.TryParse(optionStr, out option)
 
     switch (option)
     {
-        case ("1"):
+        case (int)OperationTypes.CreateGroup:
             groupController.Create();
             goto app;
-        case ("2"):
+        case (int)OperationTypes.DeleteGroup:
             groupController.Delete();
             goto app;
-        case ("3"):
+        case (int)OperationTypes.EditGroup:
             groupController.Edit();
             goto app;
-        case ("4"):
+        case (int)OperationTypes.GetByIdGroup:
             groupController.GetById();
             goto app;
-        case ("5"):
+        case (int)OperationTypes.GetAllGroup:
             groupController.GetAll();
             goto app;
-        case ("6"):
+        case (int)OperationTypes.SearchGroup:
             groupController.Search();
             goto app;
-        case ("7"):
+        case (int)OperationTypes.SortingGroup:
             groupController.Sort();
             goto app;
-        case ("8"):
+        case (int)OperationTypes.CreateStudent:
             studentController.Create();
             goto app;
-        case ("9"):
+        case (int)OperationTypes.DeleteStudent:
             studentController.Delete();
             goto app;
-        case ("10"):
+        case (int)OperationTypes.EditStudent:
             studentController.Edit();
             goto app;
-        case ("11"):
+        case (int)OperationTypes.GetByIdStudent:
             studentController.GetById();
             goto app;
-        case ("12"):
+        case (int)OperationTypes.GetAllStudent:
             studentController.GetAll();
             goto app;
-        case ("13"):
+        case (int)OperationTypes.FilterStudent:
             studentController.Filter();
             goto app;
-        case ("14"):
+        case (int)OperationTypes.SearchStudent:
             studentController.Search();
             goto app;
         default:
