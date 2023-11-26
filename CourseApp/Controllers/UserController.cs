@@ -92,9 +92,9 @@ namespace CourseApp.Controllers
                 goto ageInput;
             }
 
-            if (age < 0)
+            if (age < 18)
             {
-                Console.WriteLine("Your age cannot be less than 0");
+                Console.WriteLine("Your age cannot be less than 18");
                 goto ageInput;
             }
             Email:  Console.WriteLine("Enter your email: ");

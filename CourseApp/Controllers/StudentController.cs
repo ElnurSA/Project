@@ -59,6 +59,12 @@ namespace CourseApp.Controllers
             input:  Console.WriteLine("Search for a student: ");
 			string search = Console.ReadLine();
 
+			if (string.IsNullOrWhiteSpace(search))
+			{
+				Console.WriteLine("Search cannot be empty, please try again: ");
+				goto input;
+			}
+
 			var data = _student.Search(search);
 
 			foreach (var student in data)
@@ -90,8 +96,7 @@ namespace CourseApp.Controllers
                 Console.WriteLine("You must enter your name!");
                 goto nameInput;
             }
-            //@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
-            //@"^[A-Z][a-zA-Z]*$")
+            
             if (!Regex.IsMatch(fullName, @"[A-Z][a-zA-Z]*$"))
             {
                 Console.WriteLine("You name format is wrong!");
@@ -122,9 +127,9 @@ namespace CourseApp.Controllers
 				goto ageInput;
 			}
 
-            if (age < 0)
+            if (age < 18)
             {
-                Console.WriteLine("Your age cannot be less than 0");
+                Console.WriteLine("Your age cannot be less than 18");
                 goto ageInput;
             }
 
@@ -239,9 +244,15 @@ namespace CourseApp.Controllers
             Console.WriteLine("Enter the name of a student, who you want to delete: ");
             deleteInput:  string name = Console.ReadLine();
 
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				Console.WriteLine("Please enter the name of the student: ");
+				goto deleteInput;
+			}
+
 			var data = _student.GetAll();
 
-			Student searchRes = (Student)data.FirstOrDefault(m=>m.FullName.Contains(name));
+			Student searchRes = (Student)data.FirstOrDefault(m=>m.FullName == name);
 
 			if(searchRes == null)
 			{
@@ -345,6 +356,17 @@ namespace CourseApp.Controllers
 				goto inputAge;
 			}
 
+			if(newAge> 100)
+			{
+				Console.WriteLine("Student cant be older than 100 years");
+				goto inputAge;
+			}
+			if(newAge < 18)
+			{
+				Console.WriteLine("Student has to be at least 18 years old");
+				goto inputAge;
+			}
+
             end:  Console.WriteLine("Enter new student address: ");
 			string newAddress = Console.ReadLine();
 
@@ -356,9 +378,10 @@ namespace CourseApp.Controllers
 			int idGroup;
 			bool isGroupIdInt = int.TryParse(idGroupStr, out idGroup);
 
-			if(idGroupStr == null)
+			if(string.IsNullOrWhiteSpace(idGroupStr))
 			{
-				idGroup = id;
+				idGroup = studentById.Id;
+				goto endLine;
 			}
 
 			if (!isGroupIdInt)
@@ -367,7 +390,7 @@ namespace CourseApp.Controllers
 				goto groupLine;
 			}
 
-			Groups newGroup = group.GetById(idGroup);
+            endLine:  Groups newGroup = group.GetById(idGroup);
 
 			if (newGroup == null)
 			{
@@ -379,11 +402,6 @@ namespace CourseApp.Controllers
 
 
             _student.Edit(id, newStudent);
-
-			
-
-
-
 
         }
     }
