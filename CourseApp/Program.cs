@@ -1,6 +1,6 @@
 ﻿using CourseApp.Controllers;
 //add enum
-//add try catch
+
 //search to lower2
 //search error message does not appear
 //Capacity logic

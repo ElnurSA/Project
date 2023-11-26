@@ -14,7 +14,7 @@ namespace Repository.Repositories
 
         public List<Groups> Search(string searchStr)
         {
-            return AppDbContext<Groups>.data.Where(m => m.Name.Contains(searchStr)).ToList();
+            return AppDbContext<Groups>.data.Where(m => m.Name.ToLower().Trim().Contains(searchStr)).ToList();
         }
 
         public List<Groups> SortByAsc()

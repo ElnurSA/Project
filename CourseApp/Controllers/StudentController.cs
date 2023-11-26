@@ -124,15 +124,25 @@ namespace CourseApp.Controllers
 
 		public void Delete()
 		{
-			Console.WriteLine("Choose 1 if you want to continue, or 2 if you want to go back: ");
+            beginning: Console.WriteLine("Choose 1 if you want to continue, or 2 if you want to go back: ");
 			string intInput = Console.ReadLine();
 
-			if(intInput == "2")
-			{
-				return;
-			}
+            if (intInput == "1")
+            {
 
-			Console.WriteLine("Enter the name of a student, who you want to delete: ");
+            }
+            else if (intInput == "2")
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("You must enter either 1 or 2! Try again: ");
+                goto beginning;
+            }
+
+
+            Console.WriteLine("Enter the name of a student, who you want to delete: ");
             deleteInput:  string name = Console.ReadLine();
 
 			var data = _student.GetAll();
@@ -262,7 +272,7 @@ namespace CourseApp.Controllers
 
             _student.Edit(id, newStudent);
 
-			Console.WriteLine($"{newStudent.FullName} - {newStudent.Age} - {newStudent.Address}- {newStudent.Phone} - {newStudent.Id}");
+			Console.WriteLine($"{newStudent.FullName} - {newStudent.Age} - {newStudent.Address}- {newStudent.Phone} - {newStudent.Id} - {newStudent.Group.Name}");
 
 
 
