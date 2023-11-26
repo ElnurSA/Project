@@ -24,7 +24,7 @@ namespace Repository.Repositories
 
         public List<Student> Search(string searchStr)
         {
-            return AppDbContext<Student>.data.Where(m => m.FullName.Contains(searchStr)).ToList();
+            return AppDbContext<Student>.data.Where(m => m.FullName.Trim().ToLower().Contains(searchStr)).ToList();
         }
     }
 }

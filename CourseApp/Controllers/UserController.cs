@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Domain.Models;
 using Repository.Data;
 using Service.Helpers.Constants;
@@ -20,54 +21,138 @@ namespace CourseApp.Controllers
         
 
         public void Register()
-		{
+        {    
+            nameInput: Console.WriteLine("Enter your Name: ");
+            string name = Console.ReadLine();
 
+            bool isNameCorrect = false;
+
+            if (string.IsNullOrEmpty(name))
+            {
+                isNameCorrect = false;
+                Console.WriteLine("You must enter your name!");
+                goto nameInput;
+            }
+            if(Regex.Match(name, "^[a-zA-Z][a-zA-Z]+$").Success)
+            {
+                isNameCorrect = true;
+            }
+
+            if (!isNameCorrect)
+            {
+                Console.WriteLine("You name cannot contain any numbers!");
+                goto nameInput;
+            }
+
+            surnameInput:  Console.WriteLine("Enter your surname: ");
+            string surname = Console.ReadLine();
+
+            bool isSurnameCorrect = false;
+
+            if (string.IsNullOrEmpty(surname))
+            {
+                isNameCorrect = false;
+                Console.WriteLine("You must enter your surname!");
+                goto surnameInput;
+            }
+            if (Regex.Match(surname, "^[a-zA-Z][a-zA-Z]+$").Success)
+            {
+
+                isSurnameCorrect = true;
+
+            }
+
+            if (!isSurnameCorrect)
+            {
+                Console.WriteLine("You surname cannot contain any numbers!");
+                goto surnameInput;
+            }
+
+            ageInput: Console.WriteLine("Enter you age: ");
+            string ageStr = Console.ReadLine();
+
+            int age;
+            bool isAgeStr = int.TryParse(ageStr, out age);
+
+            if (!isAgeStr)
+            {
+                Console.WriteLine("Age must be a number, please enter a number!");
+                goto ageInput;
+            }
+
+            if (age is 0)
+            {
+                Console.WriteLine("Age cannot be 0, please try again: ");
+                goto ageInput;
+            }
+
+            if (age > 100)
+            {
+                Console.WriteLine("Your age cannot be higher than 100");
+                goto ageInput;
+            }
+
+            if (age < 0)
+            {
+                Console.WriteLine("Your age cannot be less than 0");
+                goto ageInput;
+            }
             Email:  Console.WriteLine("Enter your email: ");
 			string email = Console.ReadLine();
-            if (!email.Contains("@"))
+            bool isTrueEmail = false;
+            if (Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
             {
-                Console.WriteLine(Messages.CorrectInputOfEmail);
+                isTrueEmail = true;
+            }
+
+            if (!isTrueEmail)
+            {
+                Console.WriteLine("Your email format is wrong");
                 goto Email;
             }
 
-            Console.WriteLine("Enter your password: ");
+            passwodInput:  Console.WriteLine("Enter your password: ");
             string password = Console.ReadLine();
-            confirm: Console.WriteLine("Confirm your password");
+
+            bool isPasswordFormatCorrect = false;
+            if(Regex.Match(password, @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").Success) 
+            {
+                isPasswordFormatCorrect = true;
+            }
+            if (!isPasswordFormatCorrect)
+            {
+                Console.WriteLine("Your password format is wrong, please try again");
+                goto passwodInput;
+            }
+            
+
+            Console.WriteLine("Confirm your password");
             string confirmPassword = Console.ReadLine();
 
             if (confirmPassword != password)
             {
                 Console.WriteLine("Confirm password was not identical, please try again!");
-                goto confirm;
+                goto passwodInput;
             }
 
-            Console.WriteLine("Enter your age: ");
-            string age = Console.ReadLine();
-            Console.WriteLine("Enter your Name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter your surname: ");
-            string surname = Console.ReadLine();
-            Console.WriteLine("Register success!");
-
-            int resAge;
-
-            bool isTrueInt = int.TryParse(age, out resAge);
 
             User user = new()
             {
                 Email = email,
                 Password = password,
-                Age = resAge,
+                Age = age,
                 Name = name,
                 Surname = surname
             };
-            
+
 
             var users = _data.GetAll();
 
            
 
             _data.Register(user);
+
+            Console.WriteLine("Register Success");
         }
 
         public void GetAll()
@@ -84,18 +169,20 @@ namespace CourseApp.Controllers
         {
             Email: Console.WriteLine("Add your email: ");
             string email = Console.ReadLine();
-            if(email == "")
+            bool isTrueEmail = false;
+            if (Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
             {
-                Console.WriteLine(Messages.InputEmptyMessage);
+                isTrueEmail = true;
             }
 
-            if (!email.Contains("@"))
+            if (!isTrueEmail)
             {
-                Console.WriteLine(Messages.CorrectInputOfEmail);
+                Console.WriteLine("Your email format is wrong");
                 goto Email;
             }
+
             Console.WriteLine("Add your password: ");
-            string password = Console.ReadLine();
+            passwodInput:  string password = Console.ReadLine();
 
             bool isSuccessLogin = _data.Login(email, password);
 

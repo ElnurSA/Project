@@ -65,15 +65,32 @@ namespace CourseApp.Controllers
 				goto nameLine;
 			}
 
+			if (string.IsNullOrWhiteSpace(groupName))
+			{
+				Console.WriteLine("You must enter the name of the group!");
+				goto nameLine;
+			}
 
             capacityLine:  Console.WriteLine("Group Capacity: ");
 			string capacityStr = Console.ReadLine();
 			int capacity;
 			bool isCapacityInt = int.TryParse(capacityStr, out capacity);
 
+			if (string.IsNullOrWhiteSpace(capacityStr))
+			{
+				Console.WriteLine("You must enter capacity of the group!");
+				goto capacityLine;
+			}
+
 			if (!isCapacityInt)
 			{
 				Console.WriteLine("Your input is wrong, please enter a number!");
+				goto capacityLine;
+			}
+
+			if(capacity < 0)
+			{
+				Console.WriteLine("Capacity cannot be less than to 0");
 				goto capacityLine;
 			}
 
@@ -183,6 +200,11 @@ namespace CourseApp.Controllers
             input:  Console.WriteLine("Enter search for group name: ");
 			string search = Console.ReadLine();
 
+			if (string.IsNullOrEmpty(search.ToLower().Trim()))
+			{
+				Console.WriteLine("Search cannot be empty");
+				goto input;
+			}
 			
 			var data = _groups.Search(search);
 
@@ -196,8 +218,6 @@ namespace CourseApp.Controllers
 				Console.WriteLine("No group has been found ");
 				
 			}
-
-
 		}
 
 		public void Edit()

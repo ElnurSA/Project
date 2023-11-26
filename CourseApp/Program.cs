@@ -1,10 +1,8 @@
 ﻿using CourseApp.Controllers;
 using Service.Helpers.Enums;
-//add enum
 
-//search to lower2
-//search error message does not appear
-//Capacity logic
+
+
 
 UserController userController = new();
 StudentController studentController = new();
