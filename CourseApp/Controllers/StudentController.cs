@@ -107,6 +107,9 @@ namespace CourseApp.Controllers
 
 			Groups groupById = group.GetById(id);
 
+			int capacityGroup = groupById.Capacity;
+			capacityGroup++;
+
 			Student student = new() { FullName = fullName, Address = address, Age = age, Id = inputId, Phone = phone, Group = groupById };
 
 			if(student.Group == null)
@@ -222,15 +225,15 @@ namespace CourseApp.Controllers
 				Console.WriteLine("Id has to be a number, please try again: ");
 				goto idInput;
 			}
-			var groupById = _student.GetById(id);
+			var studentById = _student.GetById(id);
 
-			if (groupById is null)
+			if (studentById is null)
 			{
 				Console.WriteLine("Student with this id has not been found.");
 				return;
 			}
 
-			Console.WriteLine($"{groupById.FullName} - {groupById.Age} - {groupById.Address} - {groupById.Phone} - {groupById.Id}");
+			Console.WriteLine($"{studentById.FullName} - {studentById.Age} - {studentById.Address} - {studentById.Phone} - {studentById.Id}");
 
 			Console.WriteLine("Enter new student name: ");
 			string newStudentName = Console.ReadLine();
@@ -243,12 +246,14 @@ namespace CourseApp.Controllers
 			{
 				if (string.IsNullOrWhiteSpace(newAgeStr))
 				{
-					return;
+					newAge = studentById.Age;
+
+                    goto end;
 				}
 				Console.WriteLine("Age has to be a number, please try again: ");
 			}
 
-			Console.WriteLine("Enter new student address: ");
+            end:  Console.WriteLine("Enter new student address: ");
 			string newAddress = Console.ReadLine();
 
 			Console.WriteLine("Enter new student number");
@@ -258,6 +263,17 @@ namespace CourseApp.Controllers
 			string idGroupStr = Console.ReadLine();
 			int idGroup;
 			bool isGroupIdInt = int.TryParse(idGroupStr, out idGroup);
+
+			if(idGroupStr == null)
+			{
+				idGroup = id;
+			}
+
+			if (!isGroupIdInt)
+			{
+				Console.WriteLine("Id has to be a number please try again: ");
+				goto groupLine;
+			}
 
 			Groups newGroup = group.GetById(idGroup);
 
@@ -272,7 +288,7 @@ namespace CourseApp.Controllers
 
             _student.Edit(id, newStudent);
 
-			Console.WriteLine($"{newStudent.FullName} - {newStudent.Age} - {newStudent.Address}- {newStudent.Phone} - {newStudent.Id} - {newStudent.Group.Name}");
+			
 
 
 

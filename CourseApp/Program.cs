@@ -23,8 +23,8 @@ if(num == 1)
            " 4-GetById, 5-GetAll, 6-Search, 7-Sorting | Student operations : 8-Create, 9-Delete," +
            " 10-Edit, 11-GetById, 12-GetAll, 13 - Filter, 14 - Search");
     string optionStr = Console.ReadLine();
-    int option
-    bool isOptionInt = int.TryParse(optionStr, out option)
+    int option;
+    bool isOptionInt = int.TryParse(optionStr, out option);
 
     switch (option)
     {
@@ -73,6 +73,7 @@ if(num == 1)
         default:
             Console.WriteLine("Wrong input try again!");
             goto app;
+            
     }
 
 }
